@@ -1,0 +1,36 @@
+﻿@page "/tags/{tagName}"
+@using System.Globalization;
+@model Bloggie.Web.Pages.Tags.DetailsModel
+@{
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+
+            <h2 class="mb-5 display-3">Posts</h2>
+            
+            @if (Model.Posts != null && Model.Posts.Any())
+            {
+                foreach (var post in Model.Posts)
+                {
+                    <div class="mb-5 bg-light box-shadow">
+                        <img src="@post.FeaturedImageUrl" alt="@post.Heading" class="mb-2 d-block img-fluid">
+                        <div class="px-4 py-4 ">
+                            <h2 class="mb-2">@post.Heading</h2>
+                            <p>
+                                Autor : @post.Author
+                                <br />
+                                Data da publicação : @post.PublishedDate.ToString("dd/MM/yyyy", new CultureInfo("pt-BR"))
+                            </p>
+                            <p class="mb-2">
+                                @post.ShortDescription
+                            </p>
+                            <a href="/post/@post.UrlHandle" class="btn btn-dark">Saiba mais</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
